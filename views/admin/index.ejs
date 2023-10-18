@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+ <center><h1>Admin Panel</h1>
+
+  <h2>All Admins</h2>
+  <ul>
+  
+    <% if (admins.length > 0) { %>
+      <% admins.forEach(admin => { %>
+        <h3 name="username"><%= admin.username %></h3>
+
+        <a class="single" href="/admin/<%= admin._id %>">
+          <p class="title"><%= admin.password %></>
+
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>
+        There are no admins to display...</p>
+  <% } %>
+  
+  </div>
+
+  <h2>Create a New Admin</h2>
+  <form method="post" action="/admin">
+    <label for="newAdminUsername">Username:</label>
+    <input type="text" id="newAdminUsername" name="username" required><br>
+    <label for="newAdminPassword">Password:</label>
+    <input type="password" id="newAdminPassword" name="password" required><br>
+    <button type="submit">Create</button>
+  </form>
+   <form>
+    <a href="/blog">Go to Blogging Section</a>
+
+   </form></center> 
+  <script>
+    const deleteButtons = document.querySelectorAll('a.delete');
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const endpoint = `/admin/${button.dataset.doc}`;
+
+        fetch(endpoint, {
+          method: 'DELETE',
+        })
+          .then(response => response.json())
+          .then(data => window.location.href = data.redirect)
+          .catch(err => console.log(err));
+      });
+    });
+  </script>
+  <%- include("../blog/partials/footer.ejs") %>
+</body>
+</html>

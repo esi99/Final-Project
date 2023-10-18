@@ -1,0 +1,17 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body>
+
+    <h1>Edit Blog Post</h1>
+
+    <form action="/blog-posts/<%= blogg._id %>" method="POST">
+      <input type="text" name="title" value="<%= blogg.title %>">
+      <textarea name="content"><%= blogg.content %></textarea>
+  
+      <input type="submit" value="Save">
+    </form>
+
+
+<%- include("./partials/footer.ejs") %>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">delete</a>
+    <a class="edit" data-doc="<%= blog._id %>">edit</a>
+  </div>
+
+
+  <%- include("./partials/footer.ejs") %>
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blog-posts/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+    const editButton = document.querySelector('a.edit');
+
+  editButton.addEventListener('click', (e) => {
+    const docId = editButton.dataset.doc;
+
+    // Redirect to the edit page for the blog post
+    window.location.href = `edit/${docId}`;
+  });
+  </script>
+</body>

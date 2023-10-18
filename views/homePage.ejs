@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <center><h1>Welcome to X@</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li> <a href="/login">admin login</a></li>
+
+            </ul>
+        </nav></center>
+    </header>
+    <main>
+        <section>
+            <center><h2>Welcome to Our Home Page</h2>
+            <p>This is a simple home page for your website. You can customize it to include information about your site or add any other content you'd like.</p></center>
+        </section>
+        <section>
+            <center><div>
+                <a href="/auth/register">
+                    <button>Register</button>
+                </a><br>
+                <a href="/auth/login">
+                    <button>Login</button>
+                </a>
+            </div></center> 
+        </section>
+    </main>
+    <footer>
+        <center> <p>&copy; <%= new Date().getFullYear() %> @X</p></center> 
+    </footer>
+    <script>
+const registerButton = document.querySelector('#register-button');
+const loginButton = document.querySelector('#login-button');
+
+
+
+
+registerButton.addEventListener('click', () => {
+  window.location.href = '/auth/register';
+});
+
+
+loginButton.addEventListener('click', () => {
+  window.location.href = '/auth/login';
+});
+
+    </script>
+</body>
+</html>

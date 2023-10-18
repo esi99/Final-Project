@@ -1,0 +1,42 @@
+<html lang="en">
+<body>
+
+
+  <center><div class="details content">
+    <h2><%= admin.username %></h2>
+    <div class="content">
+      <p><%= admin.password %></p>
+    </div>
+    <a class="delete" data-doc="<%= admin._id %>">delete</a>
+    <a class="edit" data-doc="<%= admin._id %>">edit</a>
+  </div>
+
+  
+
+  <script>
+    const trashcan = document.querySelector('a.delete');
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/admin/${trashcan.dataset.doc}`;
+
+      fetch(endpoint, {
+        method: 'DELETE',
+      })
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+    });
+
+    const editButton = document.querySelector('a.edit');
+
+    editButton.addEventListener('click', (e) => {
+      const docId = editButton.dataset.doc;
+      window.location.href = `/admin/adminEdit/${docId}`;
+    });
+  
+  </script></center>
+<%- include("../blog/partials/footer.ejs") %>
+</body>
+</html>
+
+
